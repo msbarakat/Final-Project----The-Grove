@@ -33,8 +33,7 @@ const int DIG_PINS[5] = {2, 3, 4, 5, 6};
 
 // ── PROXIMITY — ROLLING AVERAGE ──
 // One reading is taken per loop iteration and stored in a circular buffer.
-// The average of the last 5 readings is used, smoothing out hand tremor
-// without blocking the loop for multiple pulseIn calls.
+// The average of the last 5 readings is used, smoothing out hand tremor without blocking the loop for multiple pulseIn calls.
 int proxHistory[5] = {0, 0, 0, 0, 0};
 int proxIndex      = 0;
 
@@ -64,8 +63,7 @@ void setup() {
 
 
 // ── PROXIMITY SENSOR ──
-// Takes one HC-SR04 reading, stores it in the rolling buffer,
-// and returns the inverted average (closer = higher value, 0–1023).
+// Takes one HC-SR04 reading, stores it in the rolling buffer, and returns the inverted average (closer = higher value, 0–1023).
 int readProximity() {
     digitalWrite(TRIG_PIN, LOW);
     delayMicroseconds(2);
@@ -106,8 +104,7 @@ void loop() {
     int potVal = analogRead(POT);
 
     // ── WATER SENSOR ──
-    // Suppressed for 4 seconds after a valid pour (>700)
-    // to allow the cup to drain before re-reading.
+    // Suppressed for 4 seconds after a valid pour (>700) to allow the cup to drain before re-reading.
     int waterVal = 0;
     if (now > waterBlockUntil) {
         waterVal = analogRead(WATER);
